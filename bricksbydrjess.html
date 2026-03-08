@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bricks by Dr. Jess | Custom LEGO Creations</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables --- */
+        :root {
+            --yellow: #FFD700;
+            --red: #E3000B;
+            --navy: #1B2A4A;
+            --navy-light: #253961;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --text-dark: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        /* --- Global Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--yellow);
+            color: var(--navy);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        /* --- Textures --- */
+        .stud-texture {
+            background-color: var(--navy);
+            background-image: radial-gradient(circle at center, rgba(255,255,255,0.08) 3px, transparent 4px);
+            background-size: 20px 20px;
+            color: var(--white);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background-image: linear-gradient(rgba(27, 42, 74, 0.8), rgba(27, 42, 74, 0.9)), url('https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            color: var(--white);
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            text-shadow: 2px 2px 0 var(--red), 4px 4px 0 var(--navy);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+            color: var(--yellow);
+        }
+
+        /* --- How It Works --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            color: var(--navy);
+            text-transform: uppercase;
+        }
+
+        .section-title span {
+            color: var(--red);
+        }
+
+        .how-it-works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .step-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--yellow);
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            color: var(--red);
+            margin-bottom: 1.5rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--navy);
+        }
+
+        /* --- Portfolio Gallery --- */
+        .portfolio-section {
+            background-color: var(--navy);
+            color: var(--white);
+        }
+
+        .portfolio-section .section-title {
+            color: var(--white);
+        }
+
+        .portfolio-section .section-title span {
+            color: var(--yellow);
+        }
+
+        .masonry-gallery {
+            column-count: 3;
+            column-gap: 1.5rem;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            group: hover;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(27, 42, 74, 0.9));
+            transition: var(--transition);
+            color: var(--white);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            bottom: 0;
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--yellow);
+        }
+
+        /* --- What We Can Build --- */
+        .build-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .build-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .build-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(27, 42, 74, 0.15);
+        }
+
+        .build-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .build-info {
+            padding: 1.5rem;
+        }
+
+        .build-info h3 {
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Real-Life Scale --- */
+        .scale-section {
+            background-color: var(--white);
+        }
+
+        .scale-container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .scale-text {
+            flex: 1;
+        }
+
+        .scale-text h2 {
+            font-size: 3rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .scale-text h2 span {
+            color: var(--red);
+        }
+
+        .scale-visuals {
+            flex: 1.5;
+            display: flex;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .scale-img {
+            width: 50%;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            height: 400px;
+        }
+
+        .vs-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--yellow);
+            color: var(--navy);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 4px solid var(--white);
+            z-index: 2;
+        }
+
+        /* --- Testimonials --- */
+        .testimonials {
+            background-color: var(--light-gray);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .test-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .quote-icon {
+            color: var(--yellow);
+            font-size: 2rem;
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            opacity: 0.3;
+        }
+
+        .test-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .test-author h4 {
+            color: var(--navy);
+            margin-bottom: 0.2rem;
+        }
+
+        .test-author p {
+            font-size: 0.85rem;
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        /* --- Contact Section --- */
+        .contact-section {
+            background-color: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact-section .section-title {
+            color: var(--white);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--navy-light);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            background: var(--white);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--yellow);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+
+        textarea.form-control {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .file-upload {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: block;
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            padding: 1rem;
+            text-align: center;
+            border: 2px dashed rgba(255,255,255,0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload:hover .file-upload-label {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        .form-footer-text {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .btn-submit {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #0d1627;
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--yellow);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-slogan {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--yellow);
+            color: var(--navy);
+            transform: translateY(-3px);
+        }
+
+        /* --- Animations & Utilities --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .scale-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .masonry-gallery {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .hero p { font-size: 1.2rem; }
+            .masonry-gallery { column-count: 1; }
+            .scale-visuals { flex-direction: column; }
+            .scale-img { width: 100%; height: auto; }
+            .vs-badge { top: 50%; left: 50%; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero stud-texture" id="home">
+        <div class="hero-content">
+            <h1>Bricks by Dr. Jess</h1>
+            <p>Your World, One Brick at a Time.</p>
+            <a href="#gallery" class="btn btn-primary">See Our Builds</a>
+        </div>
+    </section>
+
+    <section class="container" id="how-it-works">
+        <h2 class="section-title reveal">How It <span>Works</span></h2>
+        <div class="how-it-works-grid">
+            <div class="step-card reveal">
+                <i class="fa-solid fa-camera-retro step-icon"></i>
+                <h3>Step 1: Send Us Your Vision</h3>
+                <p>Submit a photo, 3D model, or sketch along with your desired dimensions and details.</p>
+            </div>
+            <div class="step-card reveal" style="transition-delay: 0.1s;">
+                <i class="fa-solid fa-compass step-icon"></i>
+                <h3>Step 2: We Design Your Blueprint</h3>
+                <p>Our expert team maps your vision into a structural, LEGO-compatible masterpiece.</p>
+            </div>
+            <div class="step-card reveal" style="transition-delay: 0.2s;">
+                <i class="fa-solid fa-cubes step-icon"></i>
+                <h3>Step 3: Your Build Comes to Life</h3>
+                <p>We hand-assemble and securely ship your one-of-a-kind, real LEGO set directly to you.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio-section stud-texture" id="gallery">
+        <div class="container">
+            <h2 class="section-title reveal">Our <span>Masterpieces</span></h2>
+            <div class="masonry-gallery reveal">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1518005020951-eccb12d50ce4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lego Architecture">
+                    <div class="gallery-overlay">
+                        <h4>Custom City Skyline</h4>
+                        <p>1:200 Scale</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lego Textures">
+                    <div class="gallery-overlay">
+                        <h4>Abstract Geometry</h4>
+                        <p>1,200 Bricks</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lego Scene">
+                    <div class="gallery-overlay">
+                        <h4>Vintage Car Model</h4>
+                        <p>850 Bricks</p>
+                    </div>
+                </div>
+                 <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1611604548018-d56bbd85d681?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lego Portrait">
+                    <div class="gallery-overlay">
+                        <h4>Client Portrait</h4>
+                        <p>3,400 Bricks</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lego Animals">
+                    <div class="gallery-overlay">
+                        <h4>Pet Recreation</h4>
+                        <p>Life-sized • 4,100 Bricks</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1606016159991-cdf4a2119eb8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lego Miniatures">
+                    <div class="gallery-overlay">
+                        <h4>Miniature Cafe Scene</h4>
+                        <p>Custom Diorama</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="categories">
+        <h2 class="section-title reveal">What We <span>Can Build</span></h2>
+        <div class="build-grid">
+            <div class="build-card reveal">
+                <img src="https://images.unsplash.com/photo-1518005020951-eccb12d50ce4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Architecture">
+                <div class="build-info">
+                    <h3>Architecture</h3>
+                    <p>Replicas of your childhood home, corporate headquarters, or favorite landmarks.</p>
+                </div>
+            </div>
+            <div class="build-card reveal" style="transition-delay: 0.1s;">
+                <img src="https://images.unsplash.com/photo-1611604548018-d56bbd85d681?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Portraits">
+                <div class="build-info">
+                    <h3>Portraits</h3>
+                    <p>Stunning mosaic art or 3D busts built to capture perfect likeness.</p>
+                </div>
+            </div>
+            <div class="build-card reveal" style="transition-delay: 0.2s;">
+                <img src="https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Vehicles">
+                <div class="build-info">
+                    <h3>Vehicles</h3>
+                    <p>Highly detailed scale models of your dream car, motorcycle, or boat.</p>
+                </div>
+            </div>
+            <div class="build-card reveal" style="transition-delay: 0.3s;">
+                <img src="https://images.unsplash.com/photo-1606016159991-cdf4a2119eb8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Miniature Scenes">
+                <div class="build-info">
+                    <h3>Miniature Scenes</h3>
+                    <p>Dioramas depicting special memories, movie scenes, or tabletop gaming maps.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="scale-section">
+        <div class="container scale-container">
+            <div class="scale-text reveal">
+                <h2>From <span>Reality</span><br>to <span>Bricks.</span></h2>
+                <p>We don't just build toys; we engineer art. See the precision, scale, and dramatic transformation when your real-world concepts are translated into premium LEGO constructs. No detail is too small, no structure too complex.</p>
+            </div>
+            <div class="scale-visuals reveal">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Real Modern Home" class="scale-img">
+                <div class="vs-badge">VS</div>
+                <img src="https://images.unsplash.com/photo-1518005020951-eccb12d50ce4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Lego Modern Home" class="scale-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title reveal">Client <span>Stories</span></h2>
+            <div class="testimonial-grid">
+                <div class="test-card reveal">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <p class="test-text">"They turned a photo of my house into the most incredible LEGO build. The attention to detail is mind-blowing. Absolutely speechless."</p>
+                    <div class="test-author">
+                        <h4>Michael T.</h4>
+                        <p>Custom Home Build</p>
+                    </div>
+                </div>
+                <div class="test-card reveal" style="transition-delay: 0.1s;">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <p class="test-text">"I commissioned a life-size bust of our agency's mascot. It now sits in our lobby and is the first thing every client talks about."</p>
+                    <div class="test-author">
+                        <h4>Sarah L.</h4>
+                        <p>Corporate Branding</p>
+                    </div>
+                </div>
+                <div class="test-card reveal" style="transition-delay: 0.2s;">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <p class="test-text">"Dr. Jess built a custom replica of my husband's restored vintage Mustang. The perfect anniversary gift. Worth every penny."</p>
+                    <div class="test-author">
+                        <h4>Elena R.</h4>
+                        <p>Classic Car Replica</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section stud-texture" id="contact">
+        <div class="container">
+            <h2 class="section-title reveal">Start Your <span>Build</span></h2>
+            <form class="contact-form reveal" id="quoteForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Desired Dimensions (e.g. 12x12 inches)" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Project Description - Tell us what you want to build..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="file-upload">
+                        <label class="file-upload-label">
+                            <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+                            Attach Reference Image or Model
+                        </label>
+                        <input type="file" accept="image/*,.obj,.stl">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Request a Quote</button>
+                <p class="form-footer-text">We'll get back to you within 48 hours.</p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Bricks by Dr. Jess</div>
+            <p class="footer-slogan">Your World, One Brick at a Time.</p>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.8rem; color: rgba(255,255,255,0.4);">
+                &copy; 2026 Bricks by Dr. Jess. LEGO® is a trademark of the LEGO Group of companies which does not sponsor, authorize or endorse this site.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Trigger point
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on load
+
+        // Handle dummy form submission
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.btn-submit');
+            const originalText = btn.innerText;
+            
+            btn.innerText = 'Request Sent!';
+            btn.style.backgroundColor = '#4CAF50';
+            btn.style.color = '#fff';
+            
+            setTimeout(() => {
+                this.reset();
+                btn.innerText = originalText;
+                btn.style.backgroundColor = '';
+                btn.style.color = '';
+            }, 3000);
+        });
+
+        // Update file upload label text when a file is chosen
+        const fileInput = document.querySelector('input[type="file"]');
+        const fileLabel = document.querySelector('.file-upload-label');
+        const originalLabelHtml = fileLabel.innerHTML;
+
+        fileInput.addEventListener('change', function() {
+            if(this.files && this.files.length > 0) {
+                fileLabel.innerHTML = '<i class="fa-solid fa-check" style="color: #4CAF50; font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>' + this.files[0].name;
+                fileLabel.style.borderColor = '#4CAF50';
+            } else {
+                fileLabel.innerHTML = originalLabelHtml;
+                fileLabel.style.borderColor = '';
+            }
+        });
+    </script>
+</body>
+</html>
